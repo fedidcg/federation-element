@@ -23,7 +23,7 @@ There are probably a few conflicting goals, but here are a few that occur to me:
 
 ## Proposal
 
-There are many serializations and ontologies under consideration, but just to fix on something, let’s start with a proposal to extend schema.org/LoginAction and, if necessary, microdata.
+There are many serializations and ontologies under consideration, but just to fix on something, let’s start with a proposal to extend https://schema.org/LoginAction.
 
 ### Login page discovery
 
