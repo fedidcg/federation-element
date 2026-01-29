@@ -37,10 +37,6 @@ When agents get to a website and want to login the user to it, they need to firs
 
 ### Federation
 
-The proposal is to introduce to LoginAction a property called `federation` which describes what the FedCM request would be.
-
-For example:
-
 ```html
 <login type="federated" 
   callback="callback"
@@ -134,6 +130,10 @@ document.addEventListener("login", ({token}) => login(token));
 
 ### Microdata
 
+This proposal is to introduce to LoginAction a property called `federation` which describes what the FedCM request would be.
+
+For example:
+
 ```html
 <div itemscope itemtype="https://schema.org/LoginAction">
   <data itemprop="federation" 
@@ -144,6 +144,9 @@ document.addEventListener("login", ({token}) => login(token));
 
 ### JSON-LD
 
+This proposal is to introduce to LoginAction a property called `federation` which describes what the FedCM request would be.
+
+For example:
 
 ```html
 <script type="application/ld+json">
