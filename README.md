@@ -73,7 +73,7 @@ And a fully expanded form:
 
 ```html
 <login type="federated" 
-  callback="callback"
+  onselection="callback"
   clientId="1234" 
   configURL="https://idp.example/config.json">
     <a href="https://idp.example/oauth?...">Sign-in with IdP</a>
