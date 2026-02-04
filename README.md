@@ -28,7 +28,20 @@ The problem here is that, because this is just any other combination of low leve
 
 Because of that, many user journeys that involve users logging in to websites with their federated accounts end up failing more often than not (in an unpredictable way).
 
-Is there anything that websites authors can do to make agentic browsers better aware of their federated login flows?
+Fortunately, a meaningful percentage of the federated login traffic has already been migrated to FedCM, especially for consumers, and APIs such as [IdP-initiated Request](https://github.com/fedidcg/idp-initiated) can further cover the remaining of the cases. 
+
+When the website uses FedCM to log users in via their federated accounts, the agentic browser is able to handle it as a structured tool, rather than as a unstructured statistical task.
+
+```html
+<a href="https://idp.example/oauth?..." 
+  onclick="if (window.IdentityCredential) {navigator.credentials.get({identity: ...})} ">
+  Sign-in with IdP
+</a>
+```
+
+However, that forces the agentic browser to "click" on the button to determine what are the parameters in the FedCM request.
+
+Is there anything that websites authors can do to make agentic browsers aware that a federated login option is available through a FedCM request?
 
 ## Goals
 
