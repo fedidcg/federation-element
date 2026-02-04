@@ -4,7 +4,7 @@ Status: early draft
 
 # Declarative FedCM: The `<federation>` element
 
-TL;DR; This is a proposal to allows website authors to declare to agentic browsers (e.g. LLM-powered browser actuation) that a federated login option (e.g. social login) is available so that it can be used as a tool (rather than UI actuation). 
+TL;DR; This is a proposal to allows website authors to declare to agentic browsers (e.g. LLM-powered browser actuation) that a federated login option is available so that it can be used as a structured and deterministic high-level tool. 
 
 ## Problem Statement
 
@@ -251,6 +251,12 @@ After:
 
 The introduction of a new `<login>` element that has UI semantics requires both `<federation>` and `<passkeys>` to be introduced, as well as developer activation, so it is not an immediate goal of this proposal, and is left as a future exercise that we have intentionally tried to design `<federation>` in a forwards compatible way.
 
+On a related but orthogonal note, I think agents would probably also benefit from a declarative link to the "login" page. Unclear if that necessarily needs to be handled by `<login>` or a `rel="login"` `<link>` would do.
+
+```html
+<link rel="login" href="login.html">
+```
+
 ## Alternatives Under Consideration
 
 There are two dimensions to be considered here with various options in each one: (a) how to encode semantics and (b) which ontology to use.
@@ -286,6 +292,14 @@ This is a variation to augument `role` with an additional landmak, `login`, akin
   Sign-in with X
 </span>
 ```
+
+Open questions:
+
+- How would we encode the FedCM parameters in ARIA?
+- How do we throw a javascript event to return the result?
+- What should be the ARIA role that the "login" role should have? Should it be a landmark?
+- How do we handle non-conforming screen readers? How do we make it backwards compatible to unchanged screen readers?
+
 ### Microdata
 
 This proposal is to introduce to LoginAction a property called `federation` which describes what the FedCM request would be.
@@ -299,6 +313,10 @@ For example:
   <button>Sign-in with X</button>
 </div>
 ```
+
+Open Questions:
+
+- See open questions about ARIA above
 
 ### JSON-LD
 
@@ -322,12 +340,9 @@ For example:
 }
 </script>
 ```
+Open questions:
 
-The invocation of the action occurs via a DOM event:
-
-```javascript
-document.addEventListener("action", ({type, federation: {token}}) => login(token));
-```
+- See open questions about ARIA above
 
 ### Mediation: `conditional`
 
@@ -378,10 +393,3 @@ Cons:
 - Requires RPs to redeploy their servers
 - WWW-Authenticate is blocking (and because of that, we think, poorly adopted)
 
-### Login page discovery
-
-When agents get to a website and want to login the user to it, they need to first find the login page in the first place. This often involves a series of heuristics and computer vision, but the developer can help the agent find it with the following convention:
-
-```html
-<link rel="login" href="login.html">
-```
