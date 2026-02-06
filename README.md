@@ -6,14 +6,14 @@ Status: early draft
 
 # The `<login>` element
 
-TL;DR; This is a proposal to allows website authors to use an inline `<login>` element to wrap their "login" links typically found on the top right corner. `<login>` renders like an `<a>` wrapping its inner content and opens a mediated **modal** dialog when clicked on with all login options available with a corresponding [Credential Management API](https://developer.mozilla.org/en-US/docs/Web/API/Credential_Management_API). The Credential Management call is constructed according to the options declared inline with the introduction of a declarative `<federation>` element, a `<passkey>` element and attributes to control passwords. The declarative `<login>` element allows browsers to pull login out of the content UI and into the common and interoperable browser UI assist users in ways that can't be done in userland (e.g. re-use preferences across sites, display in the URL bar and in agentic browser flows).
+TL;DR; every website has to create their own login flow, leading to an inconsistent, fragmented, inneficient and cumbersome user experience. This is a proposal to allow website authors to introduce an inline `<login>` element to wrap their "login" links typically found on the top right corner on their pages and provide a browser mediated and unified login flow across all authentication mechanisms (notably passwords, passkeys and federation) across every website. `<login>` renders like an `<a>` wrapping its inner content and opens a mediated **modal** dialog when clicked on with all login options available with a corresponding [Credential Management API](https://developer.mozilla.org/en-US/docs/Web/API/Credential_Management_API). The Credential Management call is constructed according to the options declared inline declaratively with a new `<federation>` element, a `<passkey>` element and other credential types. In addition to the user experience benefits, the declarative `<login>` element allows browsers to pull login out of the content area into the browser area (e.g. re-use preferences across sites, display in the URL bar and discover login options in agentic browser flows).
 
 ```html
 <login onselect="login()">
   <passkey challenge="1234" rpId="example.com" userVerification="preferred" timeout="60000"></passkey>
   <federation clientId="1234" configURL="https://idp1.example/config"></federation>
   <federation clientId="5678" configURL="https://idp2.example/config"></federation>
-  login
+  <a href="login.html">login</a>
 </login>
 ```
 
